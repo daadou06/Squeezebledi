@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Squeeze Bledi — Jus frais | عصير بلدي</title>
+  <meta name="description" content="Jus frais & naturels | عصير بلدي. Commande sur WhatsApp." />
+
+  <style>
+    :root{
+      /* Citrus theme */
+      --bg:#fffaf2;              /* warm cream */
+      --card:#ffffff;            /* clean white cards */
+      --text:#2b2b2b;            /* soft dark text */
+      --muted:#6f6f6f;           /* muted gray */
+      --brand:#ffb703;           /* orange */
+      --lemon:#ffd166;           /* lemon */
+      --border:rgba(0,0,0,.08);
+      --shadow: 0 18px 40px rgba(0,0,0,.08);
+      --radius: 18px;
+      --max: 980px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(900px 420px at 15% -10%, rgba(255,209,102,.35), transparent 60%),
+        radial-gradient(900px 420px at 85% 0%, rgba(255,183,3,.30), transparent 60%),
+        var(--bg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{ max-width:var(--max); margin:0 auto; padding:18px; }
+
+    /* Top bar */
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 0 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    /* Logo file: logo.jpeg */
+    .brand img{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      object-fit:cover;
+      border:1px solid var(--border);
+      background:#000; /* looks good behind your logo */
+      flex:0 0 auto;
+    }
+
+    .name{
+      font-weight:900;
+      line-height:1.1;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .tag{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:2px;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.7);
+      font-weight:900;
+      transition: transform .08s ease, background .2s ease;
+      white-space:nowrap;
+      cursor:pointer;
+    }
+    .btn:hover{ transform:translateY(-1px); background: rgba(255,255,255,.95); }
+
+    .btn.primary{
+      background: linear-gradient(135deg, #ffb703, #ffd166);
+      color:#3a2a00;
+      border-color: rgba(255,183,3,.5);
+    }
+
+    .btn.secondary{
+      background: rgba(255,255,255,.85);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.70);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(560px 200px at 20% 20%, rgba(255,209,102,.40), transparent 55%),
+        radial-gradient(560px 200px at 80% 30%, rgba(255,183,3,.32), transparent 55%);
+      pointer-events:none;
+    }
+
+    .hero > *{ position:relative; }
+
+    h1{
+      margin:0;
+      font-size:32px;
+      line-height:1.12;
+      letter-spacing:-0.02em;
+    }
+
+    .sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.6;
+      max-width:60ch;
+      font-size:14px;
+    }
+
+    .ar{
+      direction: rtl;
+      unicode-bidi: plaintext;
+      font-family: "Tahoma", "Arial", var(--font);
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    /* Hero image (optional). Put hero.jpg in same folder */
+    .heroImg{
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow:hidden;
+      background:
+        radial-gradient(500px 240px at 20% 20%, rgba(255,209,102,.55), transparent 60%),
+        radial-gradient(500px 240px at 80% 30%, rgba(255,183,3,.45), transparent 60%),
+        #fff;
+      min-height: 220px;
+      position:relative;
+    }
+
+    .heroImg img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    .imgBadge{
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      background: rgba(255,255,255,.88);
+      border:1px solid var(--border);
+      padding:10px 12px;
+      border-radius: 14px;
+      font-size:12px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Menu section */
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin: 16px 0 10px;
+    }
+
+    .sectionTitle h2{
+      margin:0;
+      font-size:16px;
+      font-weight:900;
+    }
+
+    .sectionTitle .hint{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .card{
+      grid-column: span 6;
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height:140px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .title{ font-weight:900; }
+
+    .arSmall{
+      direction: rtl;
+      unicode-bidi: plaintext;
+      font-weight:700;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+      font-family: "Tahoma", "Arial", var(--font);
+    }
+
+    .desc{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .pill{
+      font-size:12px;
+      font-weight:900;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,209,102,.35);
+      border:1px solid rgba(255,183,3,.45);
+      color:#5a3a00;
+      white-space:nowrap;
+    }
+
+    .card .btn{ margin-top:auto; }
+
+    footer{
+      margin:16px 0 6px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+
+    /* Mobile */
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; }
+      .heroImg{ min-height: 200px; }
+    }
+    @media (max-width: 720px){
+      h1{ font-size:28px; }
+      .card{ grid-column: span 12; }
+      .top{ gap:10px; }
+      .btn{ width:auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- TOP -->
+    <div class="top">
+      <div class="brand">
+        <img src="logo.jpeg" alt="Squeeze Bledi logo" />
+        <div style="min-width:0">
+          <div class="name">Squeeze Bledi</div>
+          <div class="tag">Jus frais • <span class="ar">عصير بلدي</span> • WhatsApp</div>
+        </div>
+      </div>
+
+      <a class="btn primary" id="waTop" href="#" target="_blank" rel="noopener">
+        🟠 Commander
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1>Fresh Juice, Tunisian Soul 🍊🍋</h1>
+        <p class="sub">
+          Jus frais & naturels, préparés à la commande.<br/>
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" id="waHero" href="#" target="_blank" rel="noopener">
+            🟠 Commander sur WhatsApp
+          </a>
+          <a class="btn secondary" href="#menu">Voir le menu</a>
+        </div>
+      </div>
+
+      <!-- If hero.jpg doesn't exist, you can remove the <img> and keep the nice gradient -->
+      <div class="heroImg" aria-label="Photo produits">
+        <img src="hero.jpg" alt="Bouteilles Squeeze Bledi" loading="lazy" onerror="this.style.display='none';" />
+        <div class="imgBadge">
+          🍋 Préparé à la commande • <span class="ar">طبيعي و فريش</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <div class="sectionTitle" id="menu">
+      <h2>Menu • <span class="ar">قائمة العصائر</span></h2>
+      <div class="hint">Tap WhatsApp → envoie ta commande</div>
+    </div>
+
+    <section class="grid" aria-label="Products">
+      <!-- Replace these with your real products + prices -->
+
+      <div class="card">
+        <div class="row">
+          <div>
+            <div class="title">Citronnade</div>
+            <div class="arSmall">ليمونادة</div>
+            <div class="desc">Fraîche, légère, menthe optionnelle</div>
+          </div>
+          <div class="pill">__ DT</div>
+        </div>
+        <a class="btn primary waBtn" data-item="Citronnade" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div>
+            <div class="title">Orange Bledi</div>
+            <div class="arSmall">عصير البرتقال</div>
+            <div class="desc">Pressé minute — classique</div>
+          </div>
+          <div class="pill">__ DT</div>
+        </div>
+        <a class="btn primary waBtn" data-item="Orange Bledi" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div>
+            <div class="title">Citrus Mint</div>
+            <div class="arSmall">حامض بالنعناع</div>
+            <div class="desc">Citron + menthe</div>
+          </div>
+          <div class="pill">__ DT</div>
+        </div>
+        <a class="btn primary waBtn" data-item="Citrus Mint" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div>
+            <div class="title">Grenade</div>
+            <div class="arSmall">عصير الرمان</div>
+            <div class="desc">Goût riche, حسب الموسم</div>
+          </div>
+          <div class="pill">__ DT</div>
+        </div>
+        <a class="btn primary waBtn" data-item="Grenade" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+
+    </section>
+
+    <footer>
+      © <span id="year"></span> Squeeze Bledi • Commandes via WhatsApp
+    </footer>
+  </div>
+
+  <script>
+    // ✅ Tunisia WhatsApp number (digits only, NO +)
+    const WA_NUMBER = "21629399504";
+
+    // ✅ Pre-filled message (FR + AR)
+    const baseText =
+      "Bonjour 👋 Je veux commander:\n" +
+      "• Produit(s): \n• Quantité: \n• Adresse/Zone: \n• Heure souhaitée: \n\n" +
+      "سلام 👋 نحب نعمل كوموند:\n" +
+      "• المنتوج: \n• الكمية: \n• العنوان/المنطقة: \n• الوقت: ";
+
+    const makeLink = (itemName) => {
+      const extra = itemName ? `\n\nProduit choisi: ${itemName}` : "";
+      const text = encodeURIComponent(baseText + extra);
+      return `https://wa.me/${WA_NUMBER}?text=${text}`;
+    };
+
+    document.getElementById("waTop").href = makeLink("");
+    document.getElementById("waHero").href = makeLink("");
+
+    document.querySelectorAll(".waBtn").forEach((btn) => {
+      const item = btn.getAttribute("data-item") || "";
+      btn.href = makeLink(item);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
