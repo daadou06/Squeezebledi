@@ -4,424 +4,230 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Squeeze Bledi — Jus frais | عصير بلدي</title>
-  <meta name="description" content="Jus frais & naturels | عصير بلدي. Commande sur WhatsApp." />
-
   <style>
-    :root{
-      /* Citrus theme */
-      --bg:#fffaf2;              /* warm cream */
-      --card:#ffffff;            /* clean white cards */
-      --text:#2b2b2b;            /* soft dark text */
-      --muted:#6f6f6f;           /* muted gray */
-      --brand:#ffb703;           /* orange */
-      --lemon:#ffd166;           /* lemon */
-      --border:rgba(0,0,0,.08);
+    :root {
+      --bg: #fffaf2;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #6f6f6f;
+      --brand: #ffb703;
+      --lemon: #ffd166;
+      --border: rgba(0,0,0,.08);
       --shadow: 0 18px 40px rgba(0,0,0,.08);
       --radius: 18px;
       --max: 980px;
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
-    *{ box-sizing:border-box; }
+    * { box-sizing: border-box; }
 
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      background:
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background: 
         radial-gradient(900px 420px at 15% -10%, rgba(255,209,102,.35), transparent 60%),
         radial-gradient(900px 420px at 85% 0%, rgba(255,183,3,.30), transparent 60%),
         var(--bg);
     }
 
-    a{ color:inherit; text-decoration:none; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 18px; }
 
-    .wrap{ max-width:var(--max); margin:0 auto; padding:18px; }
-
-    /* Top bar */
-    .top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 0 16px;
+    /* --- TOP BAR ALIGNMENT --- */
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0 16px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border); background: #000; }
+    .name { font-weight: 900; line-height: 1.1; }
+    .tag { color: var(--muted); font-size: 12px; }
 
-    /* Logo file: logo.jpeg */
-    .brand img{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      object-fit:cover;
-      border:1px solid var(--border);
-      background:#000; /* looks good behind your logo */
-      flex:0 0 auto;
-    }
-
-    .name{
-      font-weight:900;
-      line-height:1.1;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .tag{
-      color:var(--muted);
-      font-size:12px;
-      margin-top:2px;
-    }
-
-    /* Buttons */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:12px 14px;
+    /* --- BUTTONS --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
       border-radius: 14px;
-      border:1px solid var(--border);
+      border: 1px solid var(--border);
       background: rgba(255,255,255,.7);
-      font-weight:900;
-      transition: transform .08s ease, background .2s ease;
-      white-space:nowrap;
-      cursor:pointer;
+      font-weight: 900;
+      font-size: 14px;
+      transition: transform .08s ease;
+      white-space: nowrap;
+      cursor: pointer;
     }
-    .btn:hover{ transform:translateY(-1px); background: rgba(255,255,255,.95); }
+    .btn.primary { background: linear-gradient(135deg, #ffb703, #ffd166); color: #3a2a00; border-color: rgba(255,183,3,.5); }
+    .btn:active { transform: translateY(1px); }
 
-    .btn.primary{
-      background: linear-gradient(135deg, #ffb703, #ffd166);
-      color:#3a2a00;
-      border-color: rgba(255,183,3,.5);
-    }
-
-    .btn.secondary{
-      background: rgba(255,255,255,.85);
-    }
-
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      padding:16px;
+    /* --- HERO ALIGNMENT FIXED --- */
+    .hero {
+      display: flex; /* Changed to flex for better centering */
+      flex-wrap: wrap;
+      align-items: center; /* This centers the title/buttons vertically with the image */
+      justify-content: space-between;
+      gap: 30px;
+      padding: 24px;
       border-radius: var(--radius);
-      border:1px solid var(--border);
+      border: 1px solid var(--border);
       background: rgba(255,255,255,.70);
       box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
+      margin-bottom: 30px;
     }
 
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(560px 200px at 20% 20%, rgba(255,209,102,.40), transparent 55%),
-        radial-gradient(560px 200px at 80% 30%, rgba(255,183,3,.32), transparent 55%);
-      pointer-events:none;
-    }
+    .hero-text { flex: 1; min-width: 300px; }
+    .hero-img { flex: 1; min-width: 300px; }
 
-    .hero > *{ position:relative; }
+    h1 { margin: 0 0 20px 0; font-size: 32px; line-height: 1.1; letter-spacing: -0.02em; }
+    .ctaRow { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    h1{
-      margin:0;
-      font-size:32px;
-      line-height:1.12;
-      letter-spacing:-0.02em;
-    }
-
-    .sub{
-      margin:10px 0 0;
-      color:var(--muted);
-      line-height:1.6;
-      max-width:60ch;
-      font-size:14px;
-    }
-
-    .ar{
-      direction: rtl;
-      unicode-bidi: plaintext;
-      font-family: "Tahoma", "Arial", var(--font);
-    }
-
-    .ctaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-
-    /* Hero image (optional). Put hero.jpg in same folder */
-    .heroImg{
+    .hero-img img {
+      width: 100%;
       border-radius: 16px;
       border: 1px solid var(--border);
-      overflow:hidden;
-      background:
-        radial-gradient(500px 240px at 20% 20%, rgba(255,209,102,.55), transparent 60%),
-        radial-gradient(500px 240px at 80% 30%, rgba(255,183,3,.45), transparent 60%),
-        #fff;
-      min-height: 220px;
-      position:relative;
+      display: block;
     }
 
-    .heroImg img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
+    /* --- MENU GRID RESTORED --- */
+    .sectionTitle { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; }
+    .ar { direction: rtl; font-family: "Tahoma", "Arial", sans-serif; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Back to 2 columns */
+      gap: 16px;
     }
 
-    .imgBadge{
-      position:absolute;
-      left:12px;
-      bottom:12px;
-      background: rgba(255,255,255,.88);
-      border:1px solid var(--border);
-      padding:10px 12px;
-      border-radius: 14px;
-      font-size:12px;
-      box-shadow: var(--shadow);
-    }
-
-    /* Menu section */
-    .sectionTitle{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin: 16px 0 10px;
-    }
-
-    .sectionTitle h2{
-      margin:0;
-      font-size:16px;
-      font-weight:900;
-    }
-
-    .sectionTitle .hint{
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-      margin-top:10px;
-    }
-
-    .card{
-      grid-column: span 6;
+    .card {
       background: var(--card);
-      border:1px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height:140px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       box-shadow: 0 10px 25px rgba(0,0,0,.05);
     }
 
-    .row{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-    }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .price { background: #fff8e6; padding: 4px 8px; border-radius: 8px; font-weight: 900; font-size: 13px; color: #b37400; }
+    .desc { color: var(--muted); font-size: 13px; line-height: 1.4; }
 
-    .title{ font-weight:900; }
-
-    .arSmall{
-      direction: rtl;
-      unicode-bidi: plaintext;
-      font-weight:700;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 3px;
-      font-family: "Tahoma", "Arial", var(--font);
-    }
-
-    .desc{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.5;
-    }
-
-    .pill{
-      font-size:12px;
-      font-weight:900;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(255,209,102,.35);
-      border:1px solid rgba(255,183,3,.45);
-      color:#5a3a00;
-      white-space:nowrap;
-    }
-
-    .card .btn{ margin-top:auto; }
-
-    footer{
-      margin:16px 0 6px;
-      color:var(--muted);
-      font-size:12px;
-      text-align:center;
-    }
-
-    /* Mobile */
-    @media (max-width: 860px){
-      .hero{ grid-template-columns: 1fr; }
-      .heroImg{ min-height: 200px; }
-    }
-    @media (max-width: 720px){
-      h1{ font-size:28px; }
-      .card{ grid-column: span 12; }
-      .top{ gap:10px; }
-      .btn{ width:auto; }
+    /* --- MOBILE OPTIMIZATION --- */
+    @media (max-width: 650px) {
+      .grid { grid-template-columns: 1fr; } /* Stack cards on very small phones only */
+      .hero { text-align: center; }
+      .hero-text { order: 1; }
+      .hero-img { order: 2; }
+      .ctaRow { justify-content: center; }
+      h1 { font-size: 28px; }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
-    <!-- TOP -->
-    <div class="top">
+    
+    <header class="top">
       <div class="brand">
-        <img src="logo.jpeg" alt="Squeeze Bledi logo" />
-        <div style="min-width:0">
+        <img src="logo.jpeg" alt="Logo" />
+        <div class="name-box">
           <div class="name">Squeeze Bledi</div>
-          <div class="tag">Jus frais • <span class="ar">عصير بلدي</span> • WhatsApp</div>
+          <div class="tag">Jus frais • <span class="ar">عصير بلدي</span></div>
         </div>
       </div>
+      <a class="btn primary" id="waTop" href="#">Commander</a>
+    </header>
 
-      <a class="btn primary" id="waTop" href="#" target="_blank" rel="noopener">
-        🟠 Commander
-      </a>
-    </div>
-
-    <!-- HERO -->
     <section class="hero">
-      <div>
+      <div class="hero-text">
         <h1>Jus frais & naturels, préparés à la commande. 🍊🍋</h1>
-        <p class="sub">
-          <br/>
-        </p>
-
         <div class="ctaRow">
-          <a class="btn primary" id="waHero" href="#" target="_blank" rel="noopener">
-            🟠 Commander sur WhatsApp
-          </a>
-          <a class="btn secondary" href="#menu">Voir le menu</a>
+          <a class="btn primary" id="waHero" href="#">Commander sur WhatsApp</a>
+          <a class="btn" style="background:white" href="#menu">Voir le menu</a>
         </div>
       </div>
-
-      <!-- If hero.jpg doesn't exist, you can remove the <img> and keep the nice gradient -->
-      <div class="heroImg" aria-label="Photo produits">
-        <img src="hero.jpg" alt="Bouteilles Squeeze Bledi" loading="lazy" onerror="this.style.display='none';" />
-        <div class="imgBadge">
-          🍋 Préparé à la commande • <span class="ar">طبيعي و فريش</span>
-        </div>
+      <div class="hero-img">
+        <img src="hero.jpg" alt="Products" onerror="this.src='https://via.placeholder.com/400x300?text=Squeeze+Bledi'">
       </div>
     </section>
 
-    <!-- MENU -->
     <div class="sectionTitle" id="menu">
-      <h2>Menu • <span class="ar">قائمة العصائر</span></h2>
-      <div class="hint">Tap WhatsApp → envoie ta commande</div>
+      <h2 style="margin:0; font-size: 20px;">Menu • <span class="ar">قائمة العصائر</span></h2>
+      <span style="font-size: 12px; color: var(--muted);">Tap WhatsApp → commande</span>
     </div>
 
-    <section class="grid" aria-label="Products">
-      <!-- Replace these with your real products + prices -->
-
+    <section class="grid">
       <div class="card">
-        <div class="row">
+        <div class="card-top">
           <div>
-            <div class="title">Citronnade</div>
-            <div class="arSmall">ليمونادة</div>
-            <div class="desc">Fraîche, légère, menthe optionnelle</div>
+            <div style="font-weight:900">Citronnade</div>
+            <div class="ar" style="font-size:12px; color:var(--muted)">ليمونادة</div>
           </div>
-          <div class="pill">__ DT</div>
+          <span class="price">__ DT</span>
         </div>
-        <a class="btn primary waBtn" data-item="Citronnade" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="desc">Fraîche, légère, menthe optionnelle</div>
+        <a class="btn primary waBtn" data-item="Citronnade" href="#" style="width:100%">WhatsApp</a>
       </div>
 
       <div class="card">
-        <div class="row">
+        <div class="card-top">
           <div>
-            <div class="title">Orange Bledi</div>
-            <div class="arSmall">عصير البرتقال</div>
-            <div class="desc">Pressé minute — classique</div>
+            <div style="font-weight:900">Orange Bledi</div>
+            <div class="ar" style="font-size:12px; color:var(--muted)">عصير البرتقال</div>
           </div>
-          <div class="pill">__ DT</div>
+          <span class="price">__ DT</span>
         </div>
-        <a class="btn primary waBtn" data-item="Orange Bledi" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="desc">Pressé minute — classique</div>
+        <a class="btn primary waBtn" data-item="Orange Bledi" href="#" style="width:100%">WhatsApp</a>
       </div>
 
       <div class="card">
-        <div class="row">
+        <div class="card-top">
           <div>
-            <div class="title">Citrus Mint</div>
-            <div class="arSmall">حامض بالنعناع</div>
-            <div class="desc">Citron + menthe</div>
+            <div style="font-weight:900">Citrus Mint</div>
+            <div class="ar" style="font-size:12px; color:var(--muted)">حامض بالنعناع</div>
           </div>
-          <div class="pill">__ DT</div>
+          <span class="price">__ DT</span>
         </div>
-        <a class="btn primary waBtn" data-item="Citrus Mint" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="desc">Citron + menthe fraîche</div>
+        <a class="btn primary waBtn" data-item="Citrus Mint" href="#" style="width:100%">WhatsApp</a>
       </div>
 
       <div class="card">
-        <div class="row">
+        <div class="card-top">
           <div>
-            <div class="title">Grenade</div>
-            <div class="arSmall">عصير الرمان</div>
-            <div class="desc">Goût riche, حسب الموسم</div>
+            <div style="font-weight:900">Grenade</div>
+            <div class="ar" style="font-size:12px; color:var(--muted)">عصير الرمان</div>
           </div>
-          <div class="pill">__ DT</div>
+          <span class="price">__ DT</span>
         </div>
-        <a class="btn primary waBtn" data-item="Grenade" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="desc">Goût riche, saisonnier</div>
+        <a class="btn primary waBtn" data-item="Grenade" href="#" style="width:100%">WhatsApp</a>
       </div>
-
     </section>
 
-    <footer>
-      © <span id="year"></span> Squeeze Bledi • Commandes via WhatsApp
+    <footer style="text-align:center; padding: 40px 0; font-size:12px; color:var(--muted);">
+      © 2026 Squeeze Bledi • Commandes via WhatsApp
     </footer>
   </div>
 
   <script>
-    // ✅ Tunisia WhatsApp number (digits only, NO +)
     const WA_NUMBER = "21629399504";
-
-    // ✅ Pre-filled message (FR + AR)
-    const baseText =
-      "Bonjour 👋 Je veux commander:\n" ;
-
-    const makeLink = (itemName) => {
-      const extra = itemName ? `\n\nProduit choisi: ${itemName}` : "";
-      const text = encodeURIComponent(baseText + extra);
-      return `https://wa.me/${WA_NUMBER}?text=${text}`;
-    };
-
+    const baseText = "Bonjour 👋 Je veux commander: ";
+    const makeLink = (item) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(baseText + (item || ""))}`;
+    
     document.getElementById("waTop").href = makeLink("");
     document.getElementById("waHero").href = makeLink("");
-
-    document.querySelectorAll(".waBtn").forEach((btn) => {
-      const item = btn.getAttribute("data-item") || "";
-      btn.href = makeLink(item);
+    document.querySelectorAll(".waBtn").forEach(btn => {
+      btn.href = makeLink(btn.getAttribute("data-item"));
     });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
