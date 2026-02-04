@@ -6,8 +6,8 @@
   <title>Squeeze Bledi — Jus frais | عصير بلدي</title>
   <style>
     :root {
-      --bg: #fffaf2; /* Your original warm cream */
-      --brand: #ffb703; /* Your original orange */
+      --bg: #fffaf2;
+      --brand: #ffb703;
       --text: #1a1a1a;
       --muted: #6f6f6f;
       --glass: rgba(255, 255, 255, 0.7);
@@ -17,7 +17,7 @@
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     }
 
-    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
     
     body {
       margin: 0;
@@ -27,7 +27,6 @@
       line-height: 1.5;
     }
 
-    /* Subtle background glow for luxury feel */
     body::before {
       content: "";
       position: fixed;
@@ -39,7 +38,6 @@
 
     .wrap { max-width: 1000px; margin: 0 auto; padding: 20px; }
 
-    /* --- TOP BAR --- */
     .top {
       display: flex;
       align-items: center;
@@ -60,7 +58,6 @@
     .name { font-weight: 900; font-size: 20px; letter-spacing: -0.5px; }
     .tag { color: var(--muted); font-size: 12px; margin-top: -2px; }
 
-    /* --- HERO --- */
     .hero {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -116,7 +113,6 @@
     }
     .hero-img img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* --- MENU --- */
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -143,13 +139,13 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: background 0.3s ease;
     }
 
     .card-info { margin-bottom: 20px; }
     .card-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
     .card-title { font-weight: 900; font-size: 19px; }
-    .price { font-weight: 900; color: var(--brand); font-size: 16px; background: #fff; padding: 4px 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+    .price-list { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+    .price { font-weight: 900; color: var(--brand); font-size: 14px; background: #fff; padding: 4px 8px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); white-space: nowrap; }
     .card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
     .wa-btn-full {
@@ -161,11 +157,11 @@
       font-weight: 800;
       font-size: 14px;
       text-align: center;
+      cursor: pointer;
     }
 
     footer { text-align: center; padding: 60px 0 30px; font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
 
-    /* --- MOBILE --- */
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
       .ctaRow { justify-content: center; }
@@ -212,49 +208,31 @@
       <div class="card">
         <div class="card-info">
           <div class="card-title-row">
-            <span class="card-title">Citronnade</span>
-            <span class="price">__ DT</span>
+            <span class="card-title">Citron Menthe</span>
+            <div class="price-list">
+              <span class="price">2 DT (250ml)</span>
+              <span class="price">5 DT (1 Litre)</span>
+            </div>
           </div>
-          <div class="ar" style="font-size: 12px; margin-bottom: 6px;">ليمونادة</div>
-          <div class="card-desc">Fraîche, légère, menthe optionnelle.</div>
+          <div class="ar" style="font-size: 12px; margin-bottom: 6px;">ليمونادة بالنعناع</div>
+          <div class="card-desc">Le parfait équilibre entre la vivacité du citron et la menthe fraîche.</div>
         </div>
-        <a href="#" class="wa-btn-full waBtn" data-item="Citronnade">Commander</a>
+        <a href="#" class="wa-btn-full waBtn" data-item="Citron Menthe">Commander</a>
       </div>
 
       <div class="card">
         <div class="card-info">
           <div class="card-title-row">
-            <span class="card-title">Orange Bledi</span>
-            <span class="price">__ DT</span>
+            <span class="card-title">Orange Nectar</span>
+            <div class="price-list">
+              <span class="price">2 DT (250ml)</span>
+              <span class="price">5 DT (1 Litre)</span>
+            </div>
           </div>
           <div class="ar" style="font-size: 12px; margin-bottom: 6px;">عصير البرتقال</div>
-          <div class="card-desc">Pressé minute — classique de saison.</div>
+          <div class="card-desc">Pressé minute, naturellement sucré et riche en vitamines.</div>
         </div>
-        <a href="#" class="wa-btn-full waBtn" data-item="Orange Bledi">Commander</a>
-      </div>
-
-      <div class="card">
-        <div class="card-info">
-          <div class="card-title-row">
-            <span class="card-title">Citrus Mint</span>
-            <span class="price">__ DT</span>
-          </div>
-          <div class="ar" style="font-size: 12px; margin-bottom: 6px;">حامض بالنعناع</div>
-          <div class="card-desc">Citron + menthe fraîche mixés.</div>
-        </div>
-        <a href="#" class="wa-btn-full waBtn" data-item="Citrus Mint">Commander</a>
-      </div>
-
-      <div class="card">
-        <div class="card-info">
-          <div class="card-title-row">
-            <span class="card-title">Grenade</span>
-            <span class="price">__ DT</span>
-          </div>
-          <div class="ar" style="font-size: 12px; margin-bottom: 6px;">عصير الرمان</div>
-          <div class="card-desc">Goût riche, pressé selon arrivage.</div>
-        </div>
-        <a href="#" class="wa-btn-full waBtn" data-item="Grenade">Commander</a>
+        <a href="#" class="wa-btn-full waBtn" data-item="Orange Nectar">Commander</a>
       </div>
     </section>
   </main>
